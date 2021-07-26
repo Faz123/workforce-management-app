@@ -22,6 +22,7 @@
                     <x-jet-nav-link href="{{ route('holiday') }}" :active="request()->routeIs('holiday')">
                         {{ __('Holiday') }}
                     </x-jet-nav-link>
+                    @if (Auth::user()->role == 3) 
                     <x-jet-nav-link href="{{ route('add-staff') }}" :active="request()->routeIs('add-staff')">
                         {{ __('Add Staff') }}
                     </x-jet-nav-link>
@@ -33,7 +34,9 @@
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('view-weekly-rota') }}" :active="request()->routeIs('view-weekly-rota')">
                         {{ __('View Weekly Rota') }}
-                    </x-jet-nav-link>
+                    </x-jet-nav-link> 
+                    @endif
+                    
                     <x-jet-nav-link href="{{ route('who-is-off-this-week') }}" :active="request()->routeIs('who-is-off-this-week')">
                         {{ __('Who is off this week?') }}
                     </x-jet-nav-link>

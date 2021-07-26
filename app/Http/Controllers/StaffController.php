@@ -100,8 +100,6 @@ class StaffController extends Controller
             $request->session()->flash('flash.bannerStyle', 'success');
     
             return redirect('/manage-staff/' . $user->id . '/edit');
-    //   dd($request->input('shift_day')[0]);
-    //   dd($request);
     }
 
     public function update(User $user, Request $request)
