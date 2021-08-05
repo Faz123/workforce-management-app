@@ -75,7 +75,7 @@
 
         <!-- Role -->
         <?php 
-        $roles = array('1' => "Sales Assistant" , '2' => "Supervisor", '3' => "Management" );
+        $roles = array('1' => "Sales Assistant" , '2' => "Supervisor", '3' => "Deputy Manager", '4' => "Manager" );
         ?>
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="role" value="{{ __('Role') }}" />

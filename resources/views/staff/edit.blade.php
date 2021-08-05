@@ -38,14 +38,18 @@
                             <x-jet-label for="email" value="{{ __('Email') }}" />
                             <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{ $user->email }}" required />
                         </div>
-            
+                        <?php 
+                            $roles = array('1' => "Customer Service Assistant", '2' => "Supervisor", '3' => "Deputy Manager", '4' => "Manager" );
+                        ?>
                         <div class="mt-4">
                             <x-jet-label for="role" value="{{ __('Store Role') }}" />
                             <select name="role" id="role" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 w-full">
-                                <option value="1">Customer Service Assistant</option>
-                                <option value="2">Supervisor</option>
-                                <option value="3">Deputy Manager</option>
-                                <option value="4">Management</option>
+                                @for ($i = 1; $i < 5; $i++)
+                                    <option value="{{$i}}" 
+                                    @if ($user->role == $i) 
+                                    selected  
+                                    @endif >{{ $roles[$i]}}</option>
+                                @endfor
                             </select>
                         </div>
             

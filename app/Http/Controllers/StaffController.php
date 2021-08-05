@@ -72,34 +72,32 @@ class StaffController extends Controller
         }
     }
 
-    public function shifts(User $user) 
+    public function shifts(User $user, Shift $shift) 
     {
         return view('staff.edit-shifts')->with('user', $user);
     }
 
     public function edit(User $user)
     {
-        return view('staff.edit')->with('user', $user);
+        return view('staff.edit')
+        ->with('user', $user);
     }
 
-    public function updateShifts(User $user, Request $request)
+    public function updateShifts(User $user, Request $request, Shift $shift)
     {
-        $array = $request->input('shift_day');
-
-        foreach($array as $key => $val) {
-            $shift = new Shift();
-
-            $shift->shift_day = $request->input('shift_day')[$key];
-            $shift->start_time = $request->input('start_time')[$key];
-            $shift->end_time = $request->input('end_time')[$key];
-            $shift->user_id = $user->id;
+        $i = 0;
+        foreach($user->shifts as $shift) {
+            $shift->shift_day = $request->input('shift_day')[$i];
+            $shift->start_time = $request->input('start_time')[$i];
+            $shift->end_time = $request->input('end_time')[$i];
+            $i++;
             $shift->save();
         } 
 
             $request->session()->flash('flash.banner', 'Staff member shifts updated');
             $request->session()->flash('flash.bannerStyle', 'success');
     
-            return redirect('/manage-staff/' . $user->id . '/edit');
+            return redirect('/manage-staff/' . $user->id . '/shifts');
     }
 
     public function update(User $user, Request $request)
