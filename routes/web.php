@@ -63,6 +63,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/who-is-off-this-week', [H
 //Settings routes
 Route::middleware(['auth:sanctum', 'verified'])->get('/settings', [SettingsController::class, 'index'])->name('settings');
 
+Route::middleware(['auth:sanctum', 'verified'])->post('/save-settings', [SettingsController::class, 'save'])->name('save-settings');
+
 
 
 
