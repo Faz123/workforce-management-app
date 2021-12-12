@@ -23,20 +23,22 @@
         
                     <form method="POST" action="{{ route('save-new-staff') }}">
                     @csrf
-        
                         <div class="mt-4">
                             <x-jet-label for="name" value="{{ __('Name') }}" />
-                            <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                            <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{ old('name') }}"  autofocus autocomplete="name" />
+                            <x-jet-input-error for="name" class="mt-2" />
                         </div>
-
+                        
                         <div class="mt-4">
                             <x-jet-label for="surname" value="{{ __('Surname') }}" />
-                            <x-jet-input id="surname" class="block mt-1 w-full" type="text" name="surname" :value="old('surname')" required autofocus autocomplete="surname" />
+                            <x-jet-input id="surname" class="block mt-1 w-full" type="text" name="surname" :value="old('surname')"  autofocus autocomplete="surname" />
+                            <x-jet-input-error for="surname" class="mt-2" />
                         </div>
             
                         <div class="mt-4">
                             <x-jet-label for="email" value="{{ __('Email') }}" />
-                            <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                            <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"  />
+                            <x-jet-input-error for="email" class="mt-2" />
                         </div>
             
                         <div class="mt-4">
@@ -53,7 +55,7 @@
                         <div class="mt-4">
                             <div class="col-span-6 sm:col-span-4">
                                 <x-jet-label for="contracted_hours" value="{{ __('Number of Contracted Hours') }}" />
-                                <x-jet-input id="contracted_hours" name="contracted_hours" type="number" max="39" class="mt-1 block w-full" :value="old('contracted_hours')" />
+                                <x-jet-input id="contracted_hours" name="contracted_hours" type="number"  class="mt-1 block w-full" :value="old('contracted_hours')" />
                                 <x-jet-input-error for="contracted_hours" class="mt-2" />
                             </div>
                         </div>
@@ -88,12 +90,13 @@
             
                         <div class="mt-4">
                             <x-jet-label for="password" value="{{ __('Password') }}" />
-                            <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                            <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" autocomplete="new-password" />
                         </div>
             
                         <div class="mt-4">
                             <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                            <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                            <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" autocomplete="new-password" />
+                            <x-jet-input-error for="password_confimation" class="mt-2" />
                         </div>
                     
 

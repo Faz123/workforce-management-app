@@ -16,13 +16,15 @@ class CreateHolidaysTable extends Migration
         Schema::create('holidays', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->date('holiday_day');
-            $table->time('start_time');
-            $table->time('end_time');
+            $table->datetime('start_day')->nullable();
+            $table->datetime('end_day')->nullable();
+            $table->boolean('approved');
+            $table->string('status');
+            $table->text('notes')->nullable();
             $table->foreignId('user_id')
-                  ->constrained()
-                  ->onUpdate('cascade')
-                  ->onDelete('cascade');
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

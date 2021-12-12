@@ -16,33 +16,114 @@
                     <x-jet-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
                         {{ __('Home') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('schedule') }}" :active="request()->routeIs('schedule')">
-                        {{ __('Schedule') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('holiday') }}" :active="request()->routeIs('holiday')">
-                        {{ __('Holiday') }}
-                    </x-jet-nav-link>
-                    @if (Auth::user()->role == 3) 
-                    <x-jet-nav-link href="{{ route('add-staff') }}" :active="request()->routeIs('add-staff')">
-                        {{ __('Add Staff') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('manage-staff') }}" :active="request()->routeIs('manage-staff')">
-                        {{ __('Manage Staff') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('generate-timesheets') }}" :active="request()->routeIs('generate-timesheets')">
-                        {{ __('Generate Timesheets') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('view-weekly-rota') }}" :active="request()->routeIs('view-weekly-rota')">
-                        {{ __('View Weekly Rota') }}
-                    </x-jet-nav-link> 
-                    @endif
-                    
-                    <x-jet-nav-link href="{{ route('who-is-off-this-week') }}" :active="request()->routeIs('who-is-off-this-week')">
-                        {{ __('Who is off this week?') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('settings') }}" :active="request()->routeIs('settings')">
-                        {{ __('Settings') }}
-                    </x-jet-nav-link>
+
+                <div class="ml-3 relative inline-flex items-center">
+                    <x-jet-dropdown>
+                        <x-slot name="trigger">
+                            <span class="inline-flex rounded-md">
+                                <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
+                                    {{ __('Schedule') }}
+                                    <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </span>
+                        </x-slot>
+                        <x-slot name="content">
+                            <!-- Schedules -->
+                                <x-jet-dropdown-link href="{{ route('schedule') }}" :active="request()->routeIs('schedule')">
+                                    {{__('View Schedules')  }}
+                                </x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('my-current-schedule') }}" :active="request()->routeIs('my-current-schedule')">
+                                    {{__('View Current Schedule')  }}
+                                </x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('edit-schedule') }}" :active="request()->routeIs('edit-schedule')">
+                                    {{__('Edit Schedule')  }}
+                                </x-jet-dropdown-link>
+                                @if (Auth::user()->role == 3)
+                                <x-jet-dropdown-link href="{{ route('view-create') }}" :active="request()->routeIs('view-create')">
+                                    {{__('Create Schedule')  }}
+                                </x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('create-available-shifts') }}" :active="request()->routeIs('create-available-shifts')">
+                                    {{__('Create Available Shifts')  }}
+                                </x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('schedule') }}" :active="request()->routeIs('schedule')">
+                                    {{__('Export Schedule')  }}
+                                </x-jet-dropdown-link>
+                                @endif
+                                <x-jet-dropdown-link href="{{ route('agreed-shifts') }}" :active="request()->routeIs('agreed-shifts')">
+                                    {{__('View Agreed Additional shifts')  }}
+                                </x-jet-dropdown-link>
+                        </x-slot>
+                    </x-jet-dropdown>
+                </div>
+
+                <div class="ml-3 relative inline-flex items-center">
+                    <x-jet-dropdown>
+                        <x-slot name="trigger">
+                            <span class="inline-flex rounded-md">
+                                <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
+                                    {{ __('Staff') }}
+                                    <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </span>
+                        </x-slot>
+                        <x-slot name="content">
+                            <!-- Staff dropdown -->
+                            @if (Auth::user()->role == 3) 
+                            <x-jet-dropdown-link href="{{ route('add-staff') }}" :active="request()->routeIs('add-staff')">
+                                {{ __('Add Staff') }}
+                            </x-jet-dropdown-link>
+                            <x-jet-dropdown-link href="{{ route('manage-staff') }}" :active="request()->routeIs('manage-staff')">
+                                {{ __('Manage Staff') }}
+                            </x-jet-dropdown-link>
+                            @endif
+                            <x-jet-dropdown-link href="{{ route('view-weekly-rota') }}" :active="request()->routeIs('view-weekly-rota')">
+                                {{ __('View Weekly Rota') }}
+                            </x-jet-dropdown-link> 
+                        </x-slot>
+                    </x-jet-dropdown>
+                </div>
+
+                <div class="ml-3 relative inline-flex items-center">
+                    <x-jet-dropdown>
+                        <x-slot name="trigger">
+                            <span class="inline-flex rounded-md">
+                                <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
+                                    {{ __('Holiday') }}
+                                    <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </span>
+                        </x-slot>
+                        <x-slot name="content">
+                            <!-- Holiday dropdown -->
+                            @if (Auth::user()->role == 3) 
+                            <x-jet-dropdown-link href="{{ route('holiday-requests') }}" :active="request()->routeIs('holiday-requests')">
+                                {{ __('View Holiday Requests') }}
+                            </x-jet-dropdown-link>
+                            <x-jet-dropdown-link href="{{ route('manage-requests') }}" :active="request()->routeIs('manage-requests')">
+                                {{ __('Manage holiday Requests') }}
+                            </x-jet-dropdown-link> 
+                            @endif
+                            <x-jet-dropdown-link href="{{ route('request-holiday') }}" :active="request()->routeIs('request-holiday')">
+                                {{ __('Request Holiday') }}
+                            </x-jet-dropdown-link>
+                            
+
+                            <x-jet-dropdown-link href="{{ route('holiday-details') }}" :active="request()->routeIs('holiday-details')">
+                                {{ __('My Holiday Details') }}
+                            </x-jet-dropdown-link> 
+
+                            <x-jet-dropdown-link href="{{ route('who-is-off-this-week') }}" :active="request()->routeIs('who-is-off-this-week')">
+                                {{ __('Who Is Off This Week') }}
+                            </x-jet-dropdown-link> 
+                        </x-slot>
+                    </x-jet-dropdown>
+                </div>
                 </div>
             </div>
                     
@@ -126,6 +207,10 @@
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
+                            </x-jet-dropdown-link>
+
+                            <x-jet-dropdown-link href="{{ route('settings') }}" :active="request()->routeIs('settings')">
+                                {{ __('Settings') }}
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())

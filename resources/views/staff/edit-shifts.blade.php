@@ -36,6 +36,14 @@
                                 <x-jet-label class="mt-4 mb-4" for="shift_day_{{ $shift->shift_day }}" value="{{$shift->shift_day}}" />
                                 <x-jet-input id="shift_day_{{ $shift->shift_day }}" name="shift_day[]" type="hidden" class="mt-1 block w-full" value="{{$shift->shift_day}}" />
                                 <x-jet-input-error for="shift_day_{{$shift->shift_day}}" class="mt-2" />
+                                
+                                <x-jet-label for="{{$shift->shift_day}}_shift_type" value="{{ __('Shift Type') }}" />
+                                    <select name="shift_type[]" id="shift_type" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 w-full">
+                                        <option value="regular">Regular</option>
+                                        <option value="overtime">Overtime</option>
+                                        <option value="premium">Premium</option>
+                                    </select>
+                                <x-jet-input-error for="{{$shift->shift_day}}_shift_type" class="mt-2"  />
 
                                 <x-jet-label for="{{$shift->shift_day}}_start_time" value="{{ __('Start Time') }}" />
                                 <x-jet-input id="{{$shift->shift_day}}_start_time" name="start_time[]" type="Time" value="{{$shift->start_time}}" class="mt-1 block w-full" />

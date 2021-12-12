@@ -19,9 +19,8 @@ class Shift extends Model
         'shift_day', 'start_time', 'end_time',
     ];
 
-    public function user() 
+    public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
-
 }

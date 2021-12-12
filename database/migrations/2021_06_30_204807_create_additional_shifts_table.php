@@ -18,12 +18,13 @@ class CreateAdditionalShiftsTable extends Migration
             $table->timestamps();
             $table->string('shift_type');
             $table->string('shift_day');
-            $table->integer('store_code');
-            $table->string('duties');
+            $table->integer('store_code')->nullable();
+            $table->string('duties')->nullable();
             $table->time('start_time');
             $table->time('end_time');
             $table->boolean('shift_filled');
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->nullable();
+            $table->date('week_ending');
         });
     }
 

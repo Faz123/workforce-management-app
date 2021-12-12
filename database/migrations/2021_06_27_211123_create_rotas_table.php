@@ -17,19 +17,19 @@ class CreateRotasTable extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('week_number');
-            $table->date('week_ending'); 
-            $table->string('shift_type');
+            $table->date('week_ending');
+            $table->string('shift_type')->nullable();
             $table->string('shift_day');
-            $table->string('duties');
-            $table->time('start_time');
-            $table->time('end_time');
-            $table->boolean('holiday_approved');
-            $table->boolean('holiday_requested');
-            $table->integer('store_code');
+            $table->string('duties')->nullable();
+            $table->time('start_time')->nullable();
+            $table->time('end_time')->nullable();
+            $table->boolean('holiday_approved')->nullable();
+            $table->boolean('holiday_requested')->nullable();
+            $table->integer('store_code')->nullable();
             $table->foreignId('user_id')
-                  ->constrained()
-                  ->onUpdate('cascade')
-                  ->onDelete('cascade');
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
